@@ -84,38 +84,8 @@ func NewMap(path string) (*Map, error) {
 	return m, nil
 }
 
-// Draw draws map tiles with positions within specified
-// draw area.
-// TODO: don't work well.
-func (m *Map) Draw(win pixel.Target, matrix pixel.Matrix, size pixel.Vec) {
-	drawArea := pixel.R(matrix[4], matrix[5], matrix[4] + size.X,
-		matrix[5] + size.Y)
-	// Clear all tilesets draw batches.
-	for _, batch := range m.tileBatches {
-		batch.Clear()
-	}
-	// Draw layers tiles to tilesets batechs.
-	for _, l := range m.layers {
-		for _, t := range l.tiles {
-			tileDrawPos := mapDrawPos(t.Position(), matrix)
-			if drawArea.Contains(t.Position()) {
-				batch := m.tileBatches[t.Picture()]
-				if batch == nil {
-					continue
-				}
-				t.Draw(batch, pixel.IM.Scaled(pixel.V(0, 0),
-					matrix[0]).Moved(tileDrawPos))
-			}
-		}
-	}
-	// Draw bateches with layers tiles.
-	for _, batch := range m.tileBatches {
-		batch.Draw(win)
-	}
-}
-
 // DrawFull draws whole map starting from specified position.
-func (m *Map) DrawFull(win pixel.Target, matrix pixel.Matrix) {
+func (m *Map) Draw(win pixel.Target, matrix pixel.Matrix) {
 	// Clear all tilesets draw batches.
 	for _, batch := range m.tileBatches {
 		batch.Clear()

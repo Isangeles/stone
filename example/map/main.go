@@ -61,7 +61,7 @@ func run() {
 		// Clear window.
 		win.Clear(colornames.Black)
 		pos := pixel.V(0, 0) // e.g. camera pos
-		tmxMap.DrawFull(win, pixel.IM.Moved(pos))
+		tmxMap.Draw(win, pixel.IM.Moved(pos))
 		win.Update()
 	}
 }
