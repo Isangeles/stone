@@ -1,7 +1,7 @@
 ## Introduction
 Stone is simple library that allows rendering TMX maps with [Pixel](https://github.com/faiface/pixel) library.
 
-Originally created for [Mural](https://github.com/Isangeles/mural) GUI.
+Originally created as part of [Mural](https://github.com/Isangeles/mural) GUI.
 
 ## Usage
 Get Stone:
@@ -22,7 +22,7 @@ Draw map in Pixel window:
 for !win.Closed() {
     // ...
     pos = pixel.V(0, 0) // e.g. camera pos
-    tmxMap.DrawFull(win, pixel.IM.Moved(pos))
+    tmxMap.Draw(win, pixel.IM.Moved(pos))
 }
 ```
 

@@ -1,2 +1,4 @@
 MAJOR:
+* Only visible part of map should be rendered
 MINOR:
+* Example with camera
