@@ -21,7 +21,7 @@
  *
  */
 
-// Stone allows rendering TMX maps with Pixel library.
+// Stone allows rendering TMX maps.
 package stone
 
 import (
@@ -33,7 +33,7 @@ import (
 	"github.com/faiface/pixel"
 )
 
-// Struct for graphical representation of area map.
+// Struct for graphical representation of TMX map.
 type Map struct {
 	tmxMap      *tmx.Map
 	tilesets    map[string]pixel.Picture
@@ -84,8 +84,9 @@ func NewMap(path string) (*Map, error) {
 	return m, nil
 }
 
-// DrawFull draws whole map starting from specified position.
-func (m *Map) Draw(win pixel.Target, matrix pixel.Matrix) {
+// Draw use specified matrix to draw map on target.
+// Draws whole map starting from position specified in given matrix.
+func (m *Map) Draw(tar pixel.Target, matrix pixel.Matrix) {
 	// Clear all tilesets draw batches.
 	for _, batch := range m.tileBatches {
 		batch.Clear()
@@ -110,13 +111,13 @@ func (m *Map) Draw(win pixel.Target, matrix pixel.Matrix) {
 			if batch == nil || drawn[t.Picture()] != nil {
 				continue
 			}
-			batch.Draw(win)
+			batch.Draw(tar)
 			drawn[t.Picture()] = batch
 		}
 	}
 }
 
-// TileSize returns size of map tile.
+// TileSize returns size of singe map tile.
 func (m *Map) TileSize() pixel.Vec {
 	return m.tilesize
 }
