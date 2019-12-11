@@ -47,3 +47,8 @@ func newTile(spr *pixel.Sprite, pos pixel.Vec) *Tile {
 func (t *Tile) Position() pixel.Vec {
 	return t.bounds.Min
 }
+
+// Bounds returns tile size bounds.
+func (t *Tile) Bounds() pixel.Rect {
+	return t.bounds
+}

@@ -73,3 +73,8 @@ func newLayer(m *Map, tmxLayer tmx.Layer) (*Layer, error) {
 func (l *Layer) Name() string {
 	return l.name
 }
+
+// Tiles returns all layer tiles.
+func (l *Layer) Tiles() []*Tile {
+	return l.tiles
+}
