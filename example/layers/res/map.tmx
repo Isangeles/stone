@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.2.1" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="3" nextobjectid="1">
+ <tileset firstgid="1" name="groundtiles1" tilewidth="32" tileheight="32" tilecount="399" columns="19">
+  <image source="tilesets/groundtiles1.png" width="608" height="672"/>
+ </tileset>
+ <tileset firstgid="400" name="towerruin1" tilewidth="32" tileheight="32" tilecount="49" columns="7">
+  <image source="tilesets/towerruin1.png" width="224" height="224"/>
+ </tileset>
+ <layer id="1" name="ground" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztl1kOBCEIRPtAc4i+/6n63whUsakTP0hmUKEerv0+z/P+of0Gq4rLmidXdu5oTRgmq4+3Jh3ziuac+TPmO4vLw8isYauv9h/lnY2X2kZ2bX5Yvtl/q7azeDPtmm8cp9Un05gzRPJla0I1Sz5pvaC6q2ot5UG0sBzMes1gGH9LGrV9hfBV7gMrj1Vrqw/iy+Zg2GZnq8YqxerikNisMaP2rv2h6YlwdBlSrxM4UNYZ+4kc1l25WiPDIvGdxuF5l+xoCMcJc8S8yTvujSgL4tOYduDSao+MtWwlh+b3MJ3CYZ19XW8yVpunn8RVzWG1MX0QnigX8kav5NDYsjgy2iNxmflC43nbs8aMbCwHylrNENWI5EbX9Ipz16NB4um4O9g1wcTtutO79me1Rc6M1doz9Oz+Xo/wrGCqyLtib3fUrvJbZPWa1r61mPt4h33pZdxd/7Vr164x9gEZaVCf
+  </data>
+ </layer>
+ <layer id="2" name="buildings" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztmMcKw0AMBe3/P6VAOqmkkt57Pi1zyzVYgt2FNzDHNRIImacsE0IIIYQQQogfpTzLyljBah66mmLUqLuODWxiC9vYSbCfLjX3sI8DHOIowT7G1DzBKc5wjosE+1hS8wrXuMEt7hLrY0+9BzziCc94wWtifdyo944PfOIL3/hJrA8hhBBCpIF3TgqRu7xzUsjc5Z2TQuUu75wUKnd556QQucs7J3l/79+d4Z2TPL+nW018eO4M63/N8t5rZ1hn1PLee2dYZ7Toe+8dZJ3RWO6R1hmN4R5pndFY7pHWGdU9Mi2+vcir9w==
+  </data>
+ </layer>
+</map>
