@@ -132,6 +132,21 @@ func (m *Map) Layers() []*Layer {
 	return m.layers
 }
 
+// PositionLayer returns visible layer on specified
+// position on map or nil if there is no tiles on
+// this position.
+func (m *Map) PositionLayer(p pixel.Vec) *Layer {
+	var visibleLayer *Layer
+	for _, l := range m.Layers() {
+		for _, t := range l.Tiles() {
+			if t.Bounds().Contains(p) {
+				visibleLayer = l
+			}
+		}
+	}
+	return visibleLayer
+}
+
 // tileBounds returns bounds for tile with specified size and ID
 // from specified tileset picture.
 func (m *Map) tileBounds(tileset pixel.Picture, tileID tmx.ID) pixel.Rect {
