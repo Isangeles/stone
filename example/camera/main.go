@@ -21,7 +21,7 @@
  *
  */
 
-// Example for rendering TMX map.
+// Example for rendering TMX map with moveable camera.
 package main
 
 import (
@@ -45,7 +45,7 @@ func main() {
 func run() {
 	// Create Pixel window configuration.
 	cfg := pixelgl.WindowConfig{
-		Title:  "Stone TMX map example",
+		Title:  "Stone map camera example",
 		Bounds: pixel.R(0, 0, 1600, 900),
 	}
 	win, err := pixelgl.NewWindow(cfg)
@@ -56,13 +56,26 @@ func run() {
 	if err != nil {
 		panic(fmt.Errorf("fail to create map: %v", err))
 	}
+	cameraPos := pixel.V(0, 0)
 	// Main loop.
 	for !win.Closed() {
 		// Clear window.
 		win.Clear(colornames.Black)
 		// Draw map.
-		pos := pixel.V(0, 0) // e.g. camera pos
-		tmxMap.Draw(win, pixel.IM.Moved(pos))
+		tmxMap.Draw(win, pixel.IM.Moved(cameraPos))
+		// Key events(moves camera one tile up/down on WSAD or arrow keys event).
+		if win.JustPressed(pixelgl.KeyW) || win.JustPressed(pixelgl.KeyUp) {
+			cameraPos.Y += tmxMap.TileSize().Y
+		}
+		if win.JustPressed(pixelgl.KeyD) || win.JustPressed(pixelgl.KeyRight) {
+			cameraPos.X += tmxMap.TileSize().X
+		}
+		if win.JustPressed(pixelgl.KeyS) || win.JustPressed(pixelgl.KeyDown) {
+			cameraPos.Y -= tmxMap.TileSize().Y
+		}
+		if win.JustPressed(pixelgl.KeyA) || win.JustPressed(pixelgl.KeyLeft) {
+			cameraPos.X -= tmxMap.TileSize().X
+		}
 		// Update.
 		win.Update()
 	}
