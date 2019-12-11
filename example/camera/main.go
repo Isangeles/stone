@@ -21,7 +21,7 @@
  *
  */
 
-// Example for rendering TMX map with moveable camera.
+// Example for rendering TMX map with movable camera.
 package main
 
 import (
@@ -43,7 +43,7 @@ func main() {
 
 // All window code fired from there.
 func run() {
-	// Create Pixel window configuration.
+	// Create Pixel window.
 	cfg := pixelgl.WindowConfig{
 		Title:  "Stone map camera example",
 		Bounds: pixel.R(0, 0, 1600, 900),
@@ -52,6 +52,7 @@ func run() {
 	if err != nil {
 		panic(fmt.Errorf("fail to create pixel window: %v", err))
 	}
+	// Create map from TMX file.
 	tmxMap, err := stone.NewMap("res/map.tmx")
 	if err != nil {
 		panic(fmt.Errorf("fail to create map: %v", err))
