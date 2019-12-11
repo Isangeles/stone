@@ -131,20 +131,6 @@ func (m *Map) Layers() []*Layer {
 	return m.layers
 }
 
-// Moveable checks whether specified position is
-// passable.
-func (m *Map) Passable(pos pixel.Vec) bool {
-	if len(m.layers) < 1 {
-		return false
-	}
-	for _, t := range m.layers[0].tiles {
-		if t.bounds.Contains(pos) {
-			return true
-		}
-	}
-	return false
-}
-
 // tileBounds returns bounds for tile with specified size and ID
 // from specified tileset picture.
 func (m *Map) tileBounds(tileset pixel.Picture, tileID tmx.ID) pixel.Rect {
