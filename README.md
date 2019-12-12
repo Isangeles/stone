@@ -1,5 +1,5 @@
 ## Introduction
-Stone is simple library that allows rendering TMX maps with [Pixel](https://github.com/faiface/pixel) library.
+Stone is simple library that allows rendering [Tiled](https://www.mapeditor.org/) maps with [Pixel](https://github.com/faiface/pixel) library.
 
 Originally created as part of [Mural](https://github.com/Isangeles/mural) GUI.
 

@@ -1,4 +1,5 @@
 MAJOR:
-* Right now map.Draw draws whole map, that is unnecessary, only visible part of map(i.e. in passed Pixel matrix) should be rendered
 MINOR:
-* map.tileBounds function looks awful, should be rewritten to be shorter/more understable
+* tileBounds function looks awful, should be rewritten to be shorter/more understable
+* Zoom for camera example
+* Example for drawing only part of the map(Map.DrawPart)
