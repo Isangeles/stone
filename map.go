@@ -84,6 +84,44 @@ func NewMap(path string) (*Map, error) {
 	return m, nil
 }
 
+// DrawSize use specified matrix and size to draw map on target.
+// Draws part of the map in specified size starting from position
+// specified in given matrix.
+func (m *Map) DrawPart(tar pixel.Target, matrix pixel.Matrix, size pixel.Vec) {
+	drawArea := pixel.R(matrix[4], matrix[5], matrix[4] + size.X,
+		matrix[5] + size.Y)
+	// Clear all tilesets draw batches.
+	for _, batch := range m.tileBatches {
+		batch.Clear()
+	}
+	// Draw layers tiles to tilesets batechs.
+	for _, l := range m.layers {
+		for _, t := range l.tiles {
+			tileDrawPos := mapDrawPos(t.Position(), matrix)
+			if drawArea.Contains(t.Position()) {
+				batch := m.tileBatches[t.Picture()]
+				if batch == nil {
+					continue
+				}
+				t.Draw(batch, pixel.IM.Scaled(pixel.V(0, 0),
+					matrix[0]).Moved(tileDrawPos))
+			}
+		}
+	}
+	// Draw bateches with layer tiles.
+	drawn := make(map[pixel.Picture]*pixel.Batch)
+	for _, l := range m.layers {
+		for _, t := range l.tiles {
+			batch := m.tileBatches[t.Picture()]
+			if batch == nil || drawn[t.Picture()] != nil {
+				continue
+			}
+			batch.Draw(tar)
+			drawn[t.Picture()] = batch
+		}
+	}
+}
+
 // Draw use specified matrix to draw map on target.
 // Draws whole map starting from position specified in given matrix.
 func (m *Map) Draw(tar pixel.Target, matrix pixel.Matrix) {
