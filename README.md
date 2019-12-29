@@ -31,7 +31,7 @@ Check [example](https://github.com/Isangeles/stone/tree/master/example) package 
 ## Contributing
 You are welcome to contribute to project development.
 
-If you looking for things to do, then check TODO file or contact me(dev@isangeles.pl).
+If you looking for things to do, then check [TODO file](https://github.com/Isangeles/stone/blob/master/TODO) or contact me(dev@isangeles.pl).
 
 When you find something to do, create new branch for your feature.
 After you finish, open pull request to merge your changes with master branch.

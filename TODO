@@ -3,3 +3,4 @@ MINOR:
 * tileBounds function looks awful, should be rewritten to be shorter/more understable
 * Zoom for camera example
 * Example for drawing only part of the map(Map.DrawPart)
+* Right now TMX tileset pictures need to have size that could be divided by single tile size without remainder, if not map will not be drawn correctly, this should be changed somehow
