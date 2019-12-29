@@ -26,6 +26,7 @@ package main
 
 import (
 	"fmt"
+	"math"
 
 	"golang.org/x/image/colornames"
 
@@ -58,13 +59,14 @@ func run() {
 		panic(fmt.Errorf("fail to create map: %v", err))
 	}
 	cameraPos := pixel.V(0, 0)
+	cameraZoom := 1.0
 	// Main loop.
 	for !win.Closed() {
 		// Clear window.
 		win.Clear(colornames.Black)
 		// Draw map.
-		tmxMap.Draw(win, pixel.IM.Moved(cameraPos))
-		// Key events(moves camera one tile up/down on WSAD or arrow keys event).
+		tmxMap.Draw(win, pixel.IM.Scaled(cameraPos, cameraZoom).Moved(cameraPos))
+		// Key & mouse events(moves camera one tile righ/left/up/down on WSAD or arrow keys event, zoom on mouse scroll).
 		if win.JustPressed(pixelgl.KeyW) || win.JustPressed(pixelgl.KeyUp) {
 			cameraPos.Y += tmxMap.TileSize().Y
 		}
@@ -77,6 +79,7 @@ func run() {
 		if win.JustPressed(pixelgl.KeyA) || win.JustPressed(pixelgl.KeyLeft) {
 			cameraPos.X -= tmxMap.TileSize().X
 		}
+		cameraZoom *= math.Pow(1.1, win.MouseScroll().Y)
 		// Update.
 		win.Update()
 	}

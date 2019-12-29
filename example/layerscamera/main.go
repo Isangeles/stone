@@ -27,6 +27,7 @@ package main
 
 import (
 	"fmt"
+	"math"
 
 	"golang.org/x/image/colornames"
 	"golang.org/x/image/font/basicfont"
@@ -39,8 +40,9 @@ import (
 )
 
 var (
-	cameraPos pixel.Vec
-	areaMap   *stone.Map
+	cameraPos  pixel.Vec
+	cameraZoom = 1.0
+	areaMap    *stone.Map
 )
 
 // Main function.
@@ -74,7 +76,7 @@ func run() {
 		// Clear window.
 		win.Clear(colornames.Black)
 		// Draw map.
-		areaMap.Draw(win, pixel.IM.Moved(cameraPos))
+		areaMap.Draw(win, pixel.IM.Moved(cameraPos).Scaled(cameraPos, cameraZoom))
 		// We need to convert mouse position to map position.
 		mousePos := convCameraPos(win.MousePosition())
 		// Retrieve layer for current mouse position.
@@ -88,7 +90,7 @@ func run() {
 		textPos := pixel.V(0, 0)
 		infoText.Draw(win, pixel.IM.Moved(textPos))
 		// Key events.
-		keyEvents(win)
+		keyMouseEvents(win)
 		// Update.
 		win.Update()
 	}
@@ -97,12 +99,15 @@ func run() {
 // convCameraPos translates specified camera
 // position to area position.
 func convCameraPos(pos pixel.Vec) pixel.Vec {
-	return pixel.V(pos.X+cameraPos.X, pos.Y+cameraPos.Y)
+	areaPos := pixel.V(pos.X+cameraPos.X, pos.Y+cameraPos.Y)
+	areaPos.X /= cameraZoom
+	areaPos.Y /= cameraZoom
+	return areaPos
 }
 
-// keyEvents handles window key events.
-func keyEvents(win *pixelgl.Window) {
-	// Moves camera one tile up/down on WSAD or arrow keys event.
+// keyMouseEvents handles window key and mouse events.
+func keyMouseEvents(win *pixelgl.Window) {
+	// Moves camera one tile right/left/up/down on WSAD or arrow keys event.
 	if win.JustPressed(pixelgl.KeyW) || win.JustPressed(pixelgl.KeyUp) {
 		cameraPos.Y += areaMap.TileSize().Y
 	}
@@ -115,4 +120,7 @@ func keyEvents(win *pixelgl.Window) {
 	if win.JustPressed(pixelgl.KeyA) || win.JustPressed(pixelgl.KeyLeft) {
 		cameraPos.X -= areaMap.TileSize().X
 	}
+	// Zoom on mouse scroll.
+	zoomSpeed := 1.1
+	cameraZoom *= math.Pow(zoomSpeed, win.MouseScroll().Y)
 }
