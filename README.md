@@ -13,7 +13,7 @@ Create map:
 ```
 tmxMap, err := stone.NewMap("path/to/map.tmx")
 if err != nil {
-   panic(fmt.Errorf("fail to create map: %v", err))
+   panic(fmt.Errorf("Unable to create map: %v", err))
 }
 ```
 
@@ -40,7 +40,7 @@ After you finish, open pull request to merge your changes with master branch.
 * Isangeles <<dev@isangeles.pl>>
 
 ## License
-Copyright 2019 Dariusz Sikora <<dev@isangeles.pl>>
+Copyright 2019-2020 Dariusz Sikora <<dev@isangeles.pl>>
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
