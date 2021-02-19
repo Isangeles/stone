@@ -4,7 +4,9 @@ Stone is simple library that allows rendering [Tiled](https://www.mapeditor.org/
 Originally created as part of [Mural](https://github.com/Isangeles/mural) GUI.
 
 ## Usage
-Get Stone:
+First, make sure you have dependencies required by [Pixel](https://github.com/faiface/pixel).
+
+Get sources from git:
 ```
 $ go get -u github.com/isangeles/stone
 ```
@@ -40,7 +42,7 @@ After you finish, open pull request to merge your changes with master branch.
 * Isangeles <<dev@isangeles.pl>>
 
 ## License
-Copyright 2019-2020 Dariusz Sikora <<dev@isangeles.pl>>
+Copyright 2019-2021 Dariusz Sikora <<dev@isangeles.pl>>
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
