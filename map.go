@@ -1,7 +1,7 @@
 /*
  * map.go
  *
- * Copyright 2018-2019 Dariusz Sikora <dev@isangeles.pl>
+ * Copyright 2018-2023 Dariusz Sikora <ds@isangeles.dev>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,7 +27,7 @@ package stone
 import (
 	"fmt"
 	"path/filepath"
-	
+
 	"github.com/salviati/go-tmx/tmx"
 
 	"github.com/faiface/pixel"
@@ -56,8 +56,8 @@ func NewMap(path string) (*Map, error) {
 		float64(m.tmxMap.TileHeight))
 	m.tilescount = pixel.V(float64(m.tmxMap.Width),
 		float64(m.tmxMap.Height))
-	m.mapsize = pixel.V(float64(int(m.tilesize.X * m.tilescount.X)),
-		float64(int(m.tilesize.Y * m.tilescount.Y)))
+	m.mapsize = pixel.V(float64(int(m.tilesize.X*m.tilescount.X)),
+		float64(int(m.tilesize.Y*m.tilescount.Y)))
 	m.tilesets = make(map[string]pixel.Picture)
 	m.tileBatches = make(map[pixel.Picture]*pixel.Batch)
 	mapDir := filepath.Dir(path)
@@ -88,8 +88,8 @@ func NewMap(path string) (*Map, error) {
 // Draws part of the map in specified size starting from position
 // specified in given matrix.
 func (m *Map) DrawPart(tar pixel.Target, matrix pixel.Matrix, size pixel.Vec) {
-	drawArea := pixel.R(matrix[4], matrix[5], matrix[4] + size.X,
-		matrix[5] + size.Y)
+	drawArea := pixel.R(matrix[4], matrix[5], matrix[4]+size.X,
+		matrix[5]+size.Y)
 	// Clear all tilesets draw batches.
 	for _, batch := range m.tileBatches {
 		batch.Clear()
@@ -97,12 +97,13 @@ func (m *Map) DrawPart(tar pixel.Target, matrix pixel.Matrix, size pixel.Vec) {
 	// Draw layers tiles to tilesets batechs.
 	for _, l := range m.layers {
 		for _, t := range l.tiles {
-			tileDrawPos := mapDrawPos(t.Position(), matrix)
-			if drawArea.Contains(t.Position()) {
+			tilePos := pixel.V(t.Position().X*matrix[0], t.Position().Y*matrix[0])
+			if drawArea.Contains(tilePos) {
 				batch := m.tileBatches[t.Picture()]
 				if batch == nil {
 					continue
 				}
+				tileDrawPos := mapDrawPos(t.Position(), matrix)
 				t.Draw(batch, pixel.IM.Scaled(pixel.V(0, 0),
 					matrix[0]).Moved(tileDrawPos))
 			}
@@ -139,7 +140,7 @@ func (m *Map) Draw(tar pixel.Target, matrix pixel.Matrix) {
 			tileDrawPos := mapDrawPos(t.Position(), matrix)
 			t.Draw(batch, pixel.IM.Scaled(pixel.V(0, 0),
 				matrix[0]).Moved(tileDrawPos))
-		}	
+		}
 	}
 	// Draw bateches with layer tiles.
 	drawn := make(map[pixel.Picture]*pixel.Batch)
@@ -191,15 +192,15 @@ func (m *Map) tileBounds(tileset pixel.Picture, tileID tmx.ID) pixel.Rect {
 	tilesetSize := roundTilesetSize(tileset.Bounds().Max, m.tilesize)
 	tileCount := 0
 	for h := tilesetSize.Y - m.tilesize.Y; h >= 0; h -= m.tilesize.Y {
-		for w := 0.0; w + m.tilesize.X <= tilesetSize.X; w += m.tilesize.X {
+		for w := 0.0; w+m.tilesize.X <= tilesetSize.X; w += m.tilesize.X {
 			if tileCount == int(tileID) {
-				tileBounds := pixel.R(w, h, w + m.tilesize.X,
-					h + m.tilesize.Y)
+				tileBounds := pixel.R(w, h, w+m.tilesize.X,
+					h+m.tilesize.Y)
 				return tileBounds
 			}
 			tileCount++
 		}
 	}
 	return pixel.R(0, 0, 0, 0)
-        
+
 }
