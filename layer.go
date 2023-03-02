@@ -1,7 +1,7 @@
 /*
  * layer.go
  *
- * Copyright 2019 Dariusz Sikora <dev@isangeles.pl>
+ * Copyright 2019-2023 Dariusz Sikora <ds@isangeles.dev>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -49,7 +49,7 @@ func newLayer(m *Map, tmxLayer tmx.Layer) (*Layer, error) {
 		if tileset != nil {
 			tilesetPic := m.tilesets[tileset.Name]
 			if tilesetPic == nil {
-				return nil, fmt.Errorf("fail to found tileset source: %s",
+				return nil, fmt.Errorf("unable to found tileset source: %s",
 					tileset.Name)
 			}
 			tileBounds := m.tileBounds(tilesetPic, dt.ID)

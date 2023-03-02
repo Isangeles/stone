@@ -48,7 +48,7 @@ type Map struct {
 func NewMap(path string) (*Map, error) {
 	tmxMap, err := tmxMap(path)
 	if err != nil {
-		return nil, fmt.Errorf("fail to retive tmx map: %v", err)
+		return nil, fmt.Errorf("unable to retive TMX map: %v", err)
 	}
 	m := new(Map)
 	m.tmxMap = tmxMap
@@ -66,7 +66,7 @@ func NewMap(path string) (*Map, error) {
 		tsPath := filepath.FromSlash(mapDir + "/" + ts.Image.Source)
 		tsPic, err := picture(tsPath)
 		if err != nil {
-			return nil, fmt.Errorf("fail to retrieve tilset source: %v",
+			return nil, fmt.Errorf("unable to retrieve tilset source: %v",
 				ts.Name)
 		}
 		m.tilesets[ts.Name] = tsPic
@@ -76,7 +76,7 @@ func NewMap(path string) (*Map, error) {
 	for _, l := range m.tmxMap.Layers {
 		layer, err := newLayer(m, l)
 		if err != nil {
-			return nil, fmt.Errorf("fail to create layer: %s: %v",
+			return nil, fmt.Errorf("unable to create layer: %s: %v",
 				l.Name, err)
 		}
 		m.layers = append(m.layers, layer)

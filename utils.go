@@ -1,7 +1,7 @@
 /*
  * utils.go
  *
- * Copyright 2018-2019 Dariusz Sikora <dev@isangeles.pl>
+ * Copyright 2018-2023 Dariusz Sikora <ds@isangeles.dev>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -39,11 +39,11 @@ import (
 func tmxMap(path string) (*tmx.Map, error) {
 	tmxFile, err := os.Open(path)
 	if err != nil {
-		return nil, fmt.Errorf("fail to open tmx file: %v", err)
+		return nil, fmt.Errorf("unable to open TMX file: %v", err)
 	}
 	tmxMap, err := tmx.Read(tmxFile)
 	if err != nil {
-		return nil, fmt.Errorf("fail to read tmx file: %v", err)
+		return nil, fmt.Errorf("unable to read TMX file: %v", err)
 	}
 	return tmxMap, nil
 }
@@ -52,12 +52,12 @@ func tmxMap(path string) (*tmx.Map, error) {
 func picture(path string) (pixel.Picture, error) {
 	file, err := os.Open(path)
 	if err != nil {
-		return nil, fmt.Errorf("fail to open file: %v", err)
+		return nil, fmt.Errorf("unable to open file: %v", err)
 	}
 	defer file.Close()
 	img, _, err := image.Decode(file)
 	if err != nil {
-		return nil, fmt.Errorf("fail to decode img: %v", err)
+		return nil, fmt.Errorf("unable to decode image: %v", err)
 	}
 	return pixel.PictureDataFromImage(img), nil
 }

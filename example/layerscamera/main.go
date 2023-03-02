@@ -1,7 +1,7 @@
 /*
  * main.go
  *
- * Copyright 2019 Dariusz Sikora <dev@isangeles.pl>
+ * Copyright 2019-2023 Dariusz Sikora <ds@isangeles.dev>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -60,12 +60,12 @@ func run() {
 	}
 	win, err := pixelgl.NewWindow(cfg)
 	if err != nil {
-		panic(fmt.Errorf("fail to create pixel window: %v", err))
+		panic(fmt.Errorf("Unable to create pixel window: %v", err))
 	}
 	// Create map from TMX file.
 	m, err := stone.NewMap("res/map.tmx")
 	if err != nil {
-		panic(fmt.Errorf("fail to create map: %v", err))
+		panic(fmt.Errorf("Unable to create map: %v", err))
 	}
 	areaMap = m
 	// Creat info text.
