@@ -8,7 +8,7 @@ First, make sure you have dependencies required by [Pixel](https://github.com/fa
 
 Get sources from git:
 ```
-$ go get -u github.com/isangeles/stone
+go get -u github.com/isangeles/stone
 ```
 
 Create map:
@@ -42,7 +42,7 @@ After you finish, open pull request to merge your changes with master branch.
 * Isangeles <<ds@isangeles.dev>>
 
 ## License
-Copyright 2019-2022 Dariusz Sikora <<ds@isangeles.dev>>
+Copyright 2019-2023 Dariusz Sikora <<ds@isangeles.dev>>
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
