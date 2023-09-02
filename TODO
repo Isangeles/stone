@@ -1,4 +1,5 @@
 MAJOR:
+* Camera example: at the high level of zoom the camera controls are inverted
 MINOR:
 * tileBounds function looks awful, should be rewritten to be shorter/more understable
 * Example for drawing only part of the map(Map.DrawPart)
