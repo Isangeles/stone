@@ -42,8 +42,7 @@ func newLayer(m *Map, tmxLayer tmx.Layer) (*Layer, error) {
 	l := new(Layer)
 	l.name = tmxLayer.Name
 	l.tiles = make([]*Tile, 0)
-	tileX := 0
-	tileY := 0
+	var tileX, tileY float64
 	for _, dt := range tmxLayer.DecodedTiles {
 		tileset := dt.Tileset
 		if tileset != nil {
@@ -54,14 +53,13 @@ func newLayer(m *Map, tmxLayer tmx.Layer) (*Layer, error) {
 			}
 			tileBounds := m.tileBounds(tilesetPic, dt.ID)
 			pic := pixel.NewSprite(tilesetPic, tileBounds)
-			tilePos := pixel.V(float64(int(m.tilesize.X)*tileX),
-				float64(int(m.tilesize.Y)*tileY))
+			tilePos := pixel.V(m.tilesize.X*tileX, m.tilesize.Y*tileY)
 			tilePos.Y = m.Size().Y - tilePos.Y
 			tile := newTile(pic, tilePos)
 			l.tiles = append(l.tiles, tile)		
 		}
 		tileX++
-		if tileX > int(m.tilescount.X)-1 {
+		if tileX > m.tilescount.X-1 {
 			tileX = 0
 			tileY++
 		}
