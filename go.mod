@@ -1,11 +1,11 @@
 module github.com/isangeles/stone
 
-go 1.19
+go 1.20
 
 require (
 	github.com/faiface/pixel v0.10.0
 	github.com/salviati/go-tmx v0.0.0-20180901011116-8dae25beffeb
-	golang.org/x/image v0.5.0
+	golang.org/x/image v0.11.0
 )
 
 require (
