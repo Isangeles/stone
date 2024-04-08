@@ -1,10 +1,10 @@
 ## Introduction
-Stone is simple library that allows rendering [Tiled](https://www.mapeditor.org/) maps with [Pixel](https://github.com/faiface/pixel) library.
+Stone is simple library that allows rendering [Tiled](https://www.mapeditor.org/) maps with [Pixel](https://github.com/gopxl/pixel) library.
 
 Originally created as part of [Mural](https://github.com/Isangeles/mural) GUI.
 
 ## Usage
-First, make sure you have dependencies required by [Pixel](https://github.com/faiface/pixel).
+First, make sure you have dependencies required by [Pixel](https://github.com/gopxl/pixel).
 
 Get sources from git:
 ```
@@ -42,7 +42,7 @@ After you finish, open pull request to merge your changes with master branch.
 * Isangeles <<ds@isangeles.dev>>
 
 ## License
-Copyright 2019-2023 Dariusz Sikora <<ds@isangeles.dev>>
+Copyright 2019-2024 Dariusz Sikora <<ds@isangeles.dev>>
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

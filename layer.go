@@ -1,7 +1,7 @@
 /*
  * layer.go
  *
- * Copyright 2019-2023 Dariusz Sikora <ds@isangeles.dev>
+ * Copyright 2019-2024 Dariusz Sikora <ds@isangeles.dev>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,7 +28,7 @@ import (
 	
 	"github.com/salviati/go-tmx/tmx"
 
-	"github.com/faiface/pixel"
+	"github.com/gopxl/pixel"
 )
 
 // Struct for map layer.
